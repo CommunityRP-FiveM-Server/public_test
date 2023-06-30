@@ -3,12 +3,12 @@ name: Auto Assign to Project(s)
 on:
   issues:
     types: [opened, labeled]
-  pull_request_target:
+  pull_request:
     types: [opened, labeled]
   issue_comment:
     types: [created]
 env:
-  MY_GITHUB_TOKEN: ${{ secrets.MY_GITHUB_TOKEN }}
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 jobs:
   assign_one_project:
