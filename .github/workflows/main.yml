@@ -15,7 +15,8 @@ jobs:
     steps:
       - name: Get current date
         id: date
-        run: echo "::set-output name=date::$(date +'%Y-%m-%d')"
+        run: |
+          echo "{date}={$(date +'%Y-%m-%d')}" >> $GITHUB_STATE
       - uses: actions/add-to-project@v0.5.0
         with:
           project-url: https://github.com/orgs/CommunityRP-FiveM-Server/projects/8
@@ -27,4 +28,4 @@ jobs:
           github-token: ${{ secrets.MY_GITHUB_TOKEN }}
           item-id: ${{ steps.add-project.outputs.itemId }}
           field-keys: Date
-          field-values: ${{ steps.date.outputs.date }},
+          field-values: ${{ env.date }},
