@@ -13,10 +13,14 @@ jobs:
     name: Add issue to project
     runs-on: ubuntu-latest
     steps:
-      - name: Get current date
-        id: date
+      - name: Get event creation date
+        id: current-date
         run: |
-          echo "{date}={$(date +'%Y-%m-%d')}" >> $GITHUB_OUTPUT
+          if [[ "${{ github.event_name }}" == "issues" ]]; then
+            echo "::set-output name=date::${{ github.event.issue.created_at }}"
+          elif [[ "${{ github.event_name }}" == "pull_request" ]]; then
+            echo "::set-output name=date::${{ github.event.pull_request.created_at }}"
+          fi
       - uses: actions/add-to-project@v0.5.0
         with:
           project-url: https://github.com/orgs/CommunityRP-FiveM-Server/projects/8
@@ -28,4 +32,4 @@ jobs:
           github-token: ${{ secrets.MY_GITHUB_TOKEN }}
           item-id: ${{ steps.add-project.outputs.itemId }}
           field-keys: Date
-          field-values: ${{ steps.date.outputs.date }},
+          field-values: ${{ steps.current-date.outputs.date }},
