@@ -16,5 +16,11 @@ jobs:
           # to the issue
           project-url: https://github.com/orgs/CommunityRP-FiveM-Server/projects/8
           github-token: ${{ secrets.MY_GITHUB_TOKEN }}
-          labeled: bug, needs-triage
-          label-operator: OR
+        id: add-project
+      - uses: titoportas/update-project-fields@v0.1.0
+        with:
+          project-url: https://github.com/orgs/CommunityRP-FiveM-Server/projects/8
+          github-token: ${{ secrets.MY_GITHUB_TOKEN }}
+          item-id: ${{ steps.add-project.outputs.itemId }} # Use the item-id output of the previous step
+          field-keys: Date
+          field-values: 2023-07-01,
