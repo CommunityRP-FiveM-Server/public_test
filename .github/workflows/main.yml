@@ -17,9 +17,9 @@ jobs:
         id: current-date
         run: |
           if [[ "${{ github.event_name }}" == "issues" ]]; then
-            echo "::set-output name=date::${{ github.event.issue.created_at }}"
+            echo "date=${{ github.event.issue.created_at }}" >> $GITHUB_ENV
           elif [[ "${{ github.event_name }}" == "pull_request" ]]; then
-            echo "::set-output name=date::${{ github.event.pull_request.created_at }}"
+            echo "date=${{ github.event.pull_request.created_at }}" >> $GITHUB_ENV
           fi
       - uses: actions/add-to-project@v0.5.0
         with:
@@ -32,4 +32,4 @@ jobs:
           github-token: ${{ secrets.MY_GITHUB_TOKEN }}
           item-id: ${{ steps.add-project.outputs.itemId }}
           field-keys: Date
-          field-values: ${{ steps.current-date.outputs.date }},
+          field-values: ${{ env.date }},
