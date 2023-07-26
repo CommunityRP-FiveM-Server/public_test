@@ -30,5 +30,5 @@ jobs:
           project-url: https://github.com/orgs/CommunityRP-FiveM-Server/projects/8
           github-token: ${{ secrets.MY_GITHUB_TOKEN }}
           item-id: ${{ steps.add-project.outputs.itemId }}
-          field-keys: Date
-          field-values: ${{ env.date }},
+          field-keys: Date,Priority
+          field-values: ${{ env.date }},Unrealised
