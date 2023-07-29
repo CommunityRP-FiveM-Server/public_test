@@ -34,7 +34,7 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           version: v0.18.0
-          args: -g '*.lua' -g '!fxmanifest.lua' -- .
+          args: -- .
       - name: Check exist web files
         id: check_web_files
         uses: andstor/file-existence-action@v2
