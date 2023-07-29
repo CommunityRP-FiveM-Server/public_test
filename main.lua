@@ -10,24 +10,20 @@ function HUD:Start(xPlayer)
 	if not xPlayer then
 		xPlayer = ESX.GetPlayerData()
 	end
-		self:SetHudColor()
-			self:SlowThick()
-		self:FastThick()
+	self:SetHudColor()
+	self:SlowThick()
+	self:FastThick()
 
 	if not Config.Disable.Status then
 		self:StatusThread()
 	end
 
 	if not Config.Disable.Info then
-		
-		
 		self:UpdateAccounts(xPlayer.accounts)
 	end
 
 	if Config.Disable.MinimapOnFoot then
-
-
-					DisplayRadar(false)
+		DisplayRadar(false)
 	end
 
 	self:Toggle(true)
