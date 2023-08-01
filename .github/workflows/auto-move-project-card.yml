@@ -1,6 +1,12 @@
 name: Auto move project cards
 
-on: push
+on:
+  issues:
+    types:
+      - opened
+  pull_request_target:
+    types: 
+      - opened
 
 jobs:
   auto-move-project-cards:
