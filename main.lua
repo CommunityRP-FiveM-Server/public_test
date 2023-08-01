@@ -2,7 +2,7 @@ function HUD:Toggle(state)
 	SendNUIMessage({ type = "SHOW", value = state })
 end
 print("TEST LETS GO")
-print("TEST")
+print("TEST sadsad")
 function HUD:SetHudColor()
 	SendNUIMessage({ type = "SET_CONFIG_DATA", value = Config })
 end
