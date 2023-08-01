@@ -1,0 +1,7 @@
+name: Push | GitHub Actions Demo
+
+on: push
+
+jobs:
+  gitHub-actions-demo:
+    uses: CommunityRP-FiveM-Server/.github/.github/workflows/test.yml@main
