@@ -11,3 +11,4 @@ on:
 jobs:
   auto-move-project-cards:
     uses: CommunityRP-FiveM-Server/.github/.github/workflows/auto-move-project-board.yml@main
+    secrets: inherit
