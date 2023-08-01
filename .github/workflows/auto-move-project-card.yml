@@ -5,5 +5,3 @@ on: push
 jobs:
   auto-move-project-cards:
     uses: CommunityRP-FiveM-Server/.github/.github/workflows/auto-move-project-board.yml@main
-    with:
-      MY_GITHUB_TOKEN: ${{ secrets.MY_GITHUB_TOKEN }}
