@@ -1,6 +1,12 @@
 name: Push | GitHub Actions Demo
 
-on: push
+on:
+  workflow_dispatch:
+    inputs:
+      username:
+        default: 'Gellipapa'
+        required: false
+        type: string
 
 jobs:
   gitHub-actions-demo:
