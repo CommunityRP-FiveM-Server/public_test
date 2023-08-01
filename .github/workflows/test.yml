@@ -2,12 +2,9 @@ name: Push | GitHub Actions Demo
 
 on:
   workflow_dispatch:
-    inputs:
-      username:
-        default: 'Gellipapa'
-        required: false
-        type: string
-
+  
 jobs:
   gitHub-actions-demo:
     uses: CommunityRP-FiveM-Server/.github/.github/workflows/test.yml@main
+    with:
+      username: asd
