@@ -10,3 +10,4 @@ jobs:
     uses: CommunityRP-FiveM-Server/.github/.github/workflows/simple-release.yml@main
     with:
       zipName: 'esx_core2'
+      excludeOptions: '.git/, .github/'
