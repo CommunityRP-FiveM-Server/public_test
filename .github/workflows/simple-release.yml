@@ -6,7 +6,7 @@ on:
       versionNumber:
         description: 'Version Number'
         required: false
-        default: '1.0.0'
+        default: ''
       zipName:
         description: 'Zip Name'
         required: true
@@ -14,7 +14,7 @@ on:
       web:
         description: 'Web'
         required: false
-        default: false
+        default: "false"
 
 jobs:
   simple-create-release:
