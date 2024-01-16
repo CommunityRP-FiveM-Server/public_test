@@ -1,14 +1,26 @@
 name: Simple Release
 
 on:
-  issues:
-    types:
-      - opened
-  
+  workflow_dispatch:
+    inputs:
+      versionNumber:
+        description: 'Version Number'
+        required: true
+        default: '1.0.0'
+      zipName:
+        description: 'Zip Name'
+        required: true
+        default: 'esx_core'
+      web:
+        description: 'Web'
+        required: false
+        default: 'true'
+
 jobs:
   simple-create-release:
     uses: CommunityRP-FiveM-Server/.github/.github/workflows/simple-release.yml@main
     with:
-      zipName: 'esx_core'
-      web: true
-      versionNumber: '3.0.0'
+      zipName: ${{ github.event.inputs.zipName }}
+      web: ${{ github.event.inputs.web }}
+      versionNumber: ${{ github.event.inputs.versionNumber }}
+
