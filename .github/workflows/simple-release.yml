@@ -15,6 +15,10 @@ on:
         description: 'Web'
         required: false
         default: 'false'
+      excludeOptions:
+          type: string
+          description: Separate the files or folders that you do not want to see in the release with a comma. 
+          required: false
 
 jobs:
   simple-create-release:
