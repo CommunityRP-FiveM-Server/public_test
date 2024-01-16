@@ -1,9 +1,9 @@
 name: Simple Release
 
 on:
-  push:
-    tags:
-      - 'v*.*.*'
+  issues:
+    types:
+      - opened
   
 jobs:
   simple-create-release:
