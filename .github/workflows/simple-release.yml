@@ -11,3 +11,4 @@ jobs:
     with:
       zipName: 'esx_core'
       web: true
+      version: '3.0.0'
