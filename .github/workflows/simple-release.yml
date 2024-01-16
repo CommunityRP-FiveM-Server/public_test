@@ -21,6 +21,6 @@ jobs:
     uses: CommunityRP-FiveM-Server/.github/.github/workflows/simple-release.yml@main
     with:
       zipName: ${{ github.event.inputs.zipName }}
-      web: ${{ github.event.inputs.web }}
+      #web: ${{ github.event.inputs.web }}
       versionNumber: ${{ github.event.inputs.versionNumber }}
 
