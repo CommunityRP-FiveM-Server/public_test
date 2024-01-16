@@ -27,4 +27,5 @@ jobs:
       zipName: ${{ github.event.inputs.zipName }}
       web: ${{ github.event.inputs.web }}
       versionNumber: ${{ github.event.inputs.versionNumber }}
+      excludeOptions: ${{ github.event.inputs.excludeOptions }}
 
