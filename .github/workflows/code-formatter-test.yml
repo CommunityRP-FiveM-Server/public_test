@@ -1,0 +1,33 @@
+name: Code formatter test
+
+on:
+  workflow_dispatch:
+
+jobs:
+  modify-and-commit:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '14'
+
+    - name: Install dependencies
+      run: npm install
+
+    - name: Run replace script
+      run: node script.js do
+
+    - name: Run undo script
+      run: node script.js undo
+
+    - name: Commit changes
+      run: |
+        git config --global user.name 'Your Name'
+        git config --global user.email 'your-email@example.com'
+        git add -A
+        git commit -m "Automated modification"
+        git push
