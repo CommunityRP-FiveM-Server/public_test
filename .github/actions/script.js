@@ -1,7 +1,7 @@
 const replace = require('replace-in-file');
 
-const questionMark = "qm--";
-const backTick = "bt--";
+const questionMark = "3ad7980d-0a2f-4903-93f8-c1ed6a6ccb5";
+const backTick = "311c50ec-0898-4152-b284-9164c1a59505";
 
 function doReplace() {
     return {
