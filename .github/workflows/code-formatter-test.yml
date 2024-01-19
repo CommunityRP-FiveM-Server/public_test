@@ -25,7 +25,7 @@ jobs:
       run: node script.js do
 
     - name: Run undo script
-      run: node script.js undo
+      #run: node script.js undo
 
     - name: Commit changes
       run: |
