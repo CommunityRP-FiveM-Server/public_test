@@ -1,7 +1,7 @@
 const replace = require('replace-in-file');
 
-const questionMark = "qm--";
-const backTick = "bt--";
+const questionMark = "B428A35";
+const backTick = "A932A08";
 
 function doReplace() {
     return {
