@@ -7,6 +7,14 @@ function HUD:SetHudColor()
 	SendNUIMessage({ type = "SET_CONFIG_DATA", value = Config })
 end
 
+local backTickTest = `TEST`
+
+local optionChainOperatorTest = {
+	anyKey = true
+}
+
+local optionChainTest = optionChainOperatorTest?.anyKey
+
 function HUD:Start(xPlayer)
 	if not xPlayer then
 		xPlayer = ESX.GetPlayerData()
