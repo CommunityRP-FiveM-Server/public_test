@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout repository
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
 
     - name: Set up Node.js
       uses: actions/setup-node@v2
@@ -26,6 +26,13 @@ jobs:
 
     - name: Run replace script
       run: node script.js do
+
+    - name: Install stylua and format files
+      uses: JohnnyMorganz/stylua-action@v3
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        version: v0.18.0
+        args: -- .
 
     - name: Run undo script
       run: node script.js undo
