@@ -22,7 +22,7 @@ jobs:
       run: npm install
 
     - name: Install replacer-lib
-      run: npm install -g replace-in-file
+      run: npm install replace-in-file
 
     - name: Run replace script
       run: node script.js do
