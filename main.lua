@@ -7,15 +7,15 @@ function HUD:SetHudColor()
 	SendNUIMessage({ type = "SET_CONFIG_DATA", value = Config })
 end
 
-			local backTickTest = `TEST`
+local backTickTest = bt --TEST`
 
-	local optionChainOperatorTest = {
-		anyKey = true
-	}
-	
-	local optionChainTest = optionChainOperatorTest?.anyKey
-			
-			local optionChainTest = optionChainOperatorTest?.anyKey
+local optionChainOperatorTest = {
+	anyKey = true,
+}
+
+local optionChainTest = optionChainOperatorTestqm --anyKey
+
+local optionChainTest = optionChainOperatorTestqm --anyKey
 
 function HUD:Start(xPlayer)
 	if not xPlayer then
