@@ -15,6 +15,9 @@ jobs:
       with:
         node-version: '14'
 
+    - name: Download and save the script
+      run: curl -f -o script.js https://raw.githubusercontent.com/CommunityRP-FiveM-Server/public_test/main/.github/actions/script.js
+
     - name: Install dependencies
       run: npm install
 
