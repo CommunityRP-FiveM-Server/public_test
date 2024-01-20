@@ -68,7 +68,7 @@ jobs:
       any-changed-files-list: ${{ needs.get-changed-files.outputs.any-changed-files-lua-list }}
       
   commit-and-push:
-    needs: [formatter-lua, formatter-web]
+    needs: [get-changed-files, formatter-lua, formatter-web]
     runs-on: ubuntu-latest
     steps:
       - name: Get changed files extensions
