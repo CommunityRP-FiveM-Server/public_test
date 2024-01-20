@@ -89,6 +89,12 @@ jobs:
       - name: Run undo script
         if: steps.changed-files.outputs.any_changed == 'true'
         run: node script.js undo
+
+      - name: Create or Update .gitignore
+        run: |
+          echo "node_modules/" >> .gitignore
+          echo "package.json" >> .gitignore
+          echo "package-lock.json" >> .gitignore
           
       - name: Update repo before push
         run: |
