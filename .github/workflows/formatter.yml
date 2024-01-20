@@ -29,21 +29,27 @@ jobs:
           for file in ${{ steps.changed-files-lua.outputs.all_changed_files }}; do
             echo "$file was changed"
           done
+    outputs:
+       all-changed-files-list: ${{ steps.changed-files-lua.outputs.all_changed_files }}
+       any-changed-files-list: ${{ steps.changed-files-lua.outputs.any_changed }}
+      
+      
 
-      - name: Run lua formatter
-        uses: CommunityRP-FiveM-Server/.github/.github/workflows/formatter-lua.yml@main
-        if: ${{ github.event_name == 'pull_request' && github.event.label.name == 'format' }}
-        with:
-          all-changed-files-list: ${{ steps.changed-files-lua.outputs.all_changed_files }}
-          any-changed-files-list: ${{ steps.changed-files-lua.outputs.any_changed }}
+      #- name: Run lua formatter
+       # uses: CommunityRP-FiveM-Server/.github/.github/workflows/formatter-lua.yml@main
+       # if: ${{ github.event_name == 'pull_request' && github.event.label.name == 'format' }}
+       # with:
+        #  all-changed-files-list: ${{ steps.changed-files-lua.outputs.all_changed_files }}
+        #  any-changed-files-list: ${{ steps.changed-files-lua.outputs.any_changed }}
       
   #formatter-web:
    # uses: CommunityRP-FiveM-Server/.github/.github/workflows/formatter-web.yml@main
    # if: ${{ github.event_name == 'pull_request' && github.event.label.name == 'format' }}
     
-  #formatter-lua:
-   # uses: CommunityRP-FiveM-Server/.github/.github/workflows/formatter-lua.yml@main
-   # if: ${{ github.event_name == 'pull_request' && github.event.label.name == 'format' }}
-   # with:
-    #  all-changed-files-list: value1
-    #  any-changed-files-list: value2
+  formatter-lua:
+    needs: get-changed-files
+    uses: CommunityRP-FiveM-Server/.github/.github/workflows/formatter-lua.yml@main
+    if: ${{ github.event_name == 'pull_request' && github.event.label.name == 'format' }}
+    with:
+      all-changed-files-list: ${{ needs.get-changed-files.outputs.all-changed-files-list }}
+      any-changed-files-list: ${{ needs.get-changed-files.outputs.any-changed-files-list }}
