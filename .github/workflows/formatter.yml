@@ -29,27 +29,39 @@ jobs:
           for file in ${{ steps.changed-files-lua.outputs.all_changed_files }}; do
             echo "$file was changed"
           done
-    outputs:
-       all-changed-files-list: ${{ steps.changed-files-lua.outputs.all_changed_files }}
-       any-changed-files-list: ${{ steps.changed-files-lua.outputs.any_changed }}
-      
-      
 
-      #- name: Run lua formatter
-       # uses: CommunityRP-FiveM-Server/.github/.github/workflows/formatter-lua.yml@main
-       # if: ${{ github.event_name == 'pull_request' && github.event.label.name == 'format' }}
-       # with:
-        #  all-changed-files-list: ${{ steps.changed-files-lua.outputs.all_changed_files }}
-        #  any-changed-files-list: ${{ steps.changed-files-lua.outputs.any_changed }}
-      
-  #formatter-web:
-   # uses: CommunityRP-FiveM-Server/.github/.github/workflows/formatter-web.yml@main
-   # if: ${{ github.event_name == 'pull_request' && github.event.label.name == 'format' }}
+      - name: Get changed web files
+        id: changed-files-web
+        uses: tj-actions/changed-files@v37
+        with:
+          files: |
+            **/*.{js,html,css,jsx}
+            !**/*.yml
+            !**/*.min.js
+            
+      - name: List all changed web files
+        run: |
+          for file in ${{ steps.changed-files-web.outputs.all_changed_files }}; do
+            echo "$file was changed"
+          done
+          
+    outputs:
+       all-changed-files-lua-list: ${{ steps.changed-files-lua.outputs.all_changed_files }}
+       any-changed-files-lua-list: ${{ steps.changed-files-lua.outputs.any_changed }}
+       all-changed-files-web-list: ${{ steps.changed-files-web.outputs.all_changed_files }}
+       any-changed-files-web-list: ${{ steps.changed-files-web.outputs.any_changed }}
+       
+  formatter-web:
+    uses: CommunityRP-FiveM-Server/.github/.github/workflows/formatter-web.yml@main
+    if: ${{ github.event_name == 'pull_request' && github.event.label.name == 'format' }}
+    with:
+      all-changed-files-list: ${{ needs.get-changed-files.outputs.all-changed-files-web-list }}
+      any-changed-files-list: ${{ needs.get-changed-files.outputs.any-changed-files-web-list }}
     
   formatter-lua:
     needs: get-changed-files
     uses: CommunityRP-FiveM-Server/.github/.github/workflows/formatter-lua.yml@main
     if: ${{ github.event_name == 'pull_request' && github.event.label.name == 'format' }}
     with:
-      all-changed-files-list: ${{ needs.get-changed-files.outputs.all-changed-files-list }}
-      any-changed-files-list: ${{ needs.get-changed-files.outputs.any-changed-files-list }}
+      all-changed-files-list: ${{ needs.get-changed-files.outputs.all-changed-files-lua-list }}
+      any-changed-files-list: ${{ needs.get-changed-files.outputs.any-changed-files-lua-list }}
