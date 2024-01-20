@@ -5,10 +5,45 @@ on:
     types: [ labeled ]
   
 jobs:
-  formatter-web:
-    uses: CommunityRP-FiveM-Server/.github/.github/workflows/formatter-web.yml@main
-    if: ${{ github.event_name == 'pull_request' && github.event.label.name == 'format' }}
+  get-changed-files:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          ref: ${{ github.head_ref }}
+          fetch-depth: 0
+          
+      - name: Get changed files
+        id: changed-files-lua
+        uses: tj-actions/changed-files@v37
+        with:
+          files: |
+            **/*.lua
+            !**/*.yml
+      - name: List all changed files
+        run: |
+          for file in ${{ steps.changed-files-lua.outputs.all_changed_files }}; do
+            echo "$file was changed"
+          done
+
+      - name: Run lua formatter
+        uses: CommunityRP-FiveM-Server/.github/.github/workflows/formatter-lua.yml@main
+        if: ${{ github.event_name == 'pull_request' && github.event.label.name == 'format' }}
+        with:
+          all-changed-files-list: ${{ steps.changed-files-lua.outputs.all_changed_files }}
+          any-changed-files-list: ${{ steps.changed-files-lua.outputs.any_changed }}
+      
+  #formatter-web:
+   # uses: CommunityRP-FiveM-Server/.github/.github/workflows/formatter-web.yml@main
+   # if: ${{ github.event_name == 'pull_request' && github.event.label.name == 'format' }}
     
-  formatter-lua:
-    uses: CommunityRP-FiveM-Server/.github/.github/workflows/formatter-lua.yml@main
-    if: ${{ github.event_name == 'pull_request' && github.event.label.name == 'format' }}
+  #formatter-lua:
+   # uses: CommunityRP-FiveM-Server/.github/.github/workflows/formatter-lua.yml@main
+   # if: ${{ github.event_name == 'pull_request' && github.event.label.name == 'format' }}
+   # with:
+    #  all-changed-files-list: value1
+    #  any-changed-files-list: value2
