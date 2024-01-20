@@ -52,6 +52,7 @@ jobs:
        any-changed-files-web-list: ${{ steps.changed-files-web.outputs.any_changed }}
        
   formatter-web:
+    needs: get-changed-files
     uses: CommunityRP-FiveM-Server/.github/.github/workflows/formatter-web.yml@main
     if: ${{ github.event_name == 'pull_request' && github.event.label.name == 'format' }}
     with:
