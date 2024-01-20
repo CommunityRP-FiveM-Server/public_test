@@ -66,3 +66,38 @@ jobs:
     with:
       all-changed-files-list: ${{ needs.get-changed-files.outputs.all-changed-files-lua-list }}
       any-changed-files-list: ${{ needs.get-changed-files.outputs.any-changed-files-lua-list }}
+      
+  commit-and-push:
+    needs: [formatter-lua, formatter-web]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get changed files extensions
+        if: needs.get-changed-files.outputs.any-changed-files-lua-list == 'true' || needs.get-changed-files.outputs.any-changed-files-web-list == 'true'
+        id: getext-all
+        run: |
+          import os
+          web_files = '${{ needs.get-changed-files.outputs.all-changed-files-web-list }}'.split()
+          lua_files = '${{ needs.get-changed-files.outputs.all-changed-files-lua-list }}'.split()
+          all_files = web_files + lua_files
+          extensions = set('*' + os.path.splitext(file)[1] for file in all_files)
+          with open(os.getenv('GITHUB_ENV'), 'a') as f:
+            f.write(f"CHANGED_EXTENSIONS={' '.join(extensions)}\n")
+        shell: python
+
+      - name: Create or Update .gitignore
+        run: |
+          echo "node_modules/" >> .gitignore
+          echo "package.json" >> .gitignore
+          echo "package-lock.json" >> .gitignore        
+
+      - name: Commit changes and push current branch
+        if: needs.get-changed-files.outputs.any-changed-files-lua-list == 'true' || needs.get-changed-files.outputs.any-changed-files-web-list == 'true'
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_user_name: ESX GITHUB ACTIONS BOT
+          commit_user_email: esx-github-actions-bot@users.noreply.github.com
+          commit_message: :art:Code formatted in ${{ env.CHANGED_EXTENSIONS }} files
+          file_pattern: ${{ env.CHANGED_EXTENSIONS }}
+          status_options: '--untracked-files=no'
+    
+      
