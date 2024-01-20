@@ -60,8 +60,9 @@ jobs:
         
       - name: Format changed files with Prettier
         if: steps.changed-files-web.outputs.any_changed == 'true'
-        run: |
-            npx prettier --write ${{ steps.changed-files-web.outputs.all_changed_files }}  
+        run: | 
+            npm install --save-dev prettier && npx prettier --write ${{ steps.changed-files-web.outputs.all_changed_files }}  
+
             
       - name: Download and save the script
         if: steps.changed-files.outputs.any_changed == 'true'
