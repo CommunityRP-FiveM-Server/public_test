@@ -2,9 +2,9 @@ import {For} from "solid-js";
 import {useHudStorageDispatch, useHudStorageState} from "../Contexts/HudStorage";
 import {useSettingsStorageState} from "../Contexts/SettingsStorage";
 
-const MicIcon = (props) => {
-    const mic = () => props.state ? 'orange' : 'white'
-    const radio = () => props.radio ?  'red': 'white'
+    const MicIcon = (props) => {
+        const mic = () => props.state ? 'orange' : 'white'
+                const radio = () => props.radio ?  'red': 'white'
 
     return(
         <svg width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
