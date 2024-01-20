@@ -72,7 +72,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Get changed files extensions
-        if: needs.get-changed-files.outputs.any-changed-files-lua-list == 'true' || needs.get-changed-files.outputs.any-changed-files-web-list == 'true'
+        if: ${{ needs.get-changed-files.outputs.any-changed-files-lua-list == 'true' || needs.get-changed-files.outputs.any-changed-files-web-list == 'true'}}
         id: getext-all
         run: |
           import os
@@ -91,7 +91,7 @@ jobs:
           echo "package-lock.json" >> .gitignore        
 
       - name: Commit changes and push current branch
-        if: needs.get-changed-files.outputs.any-changed-files-lua-list == 'true' || needs.get-changed-files.outputs.any-changed-files-web-list == 'true'
+        if: ${{ needs.get-changed-files.outputs.any-changed-files-lua-list == 'true' || needs.get-changed-files.outputs.any-changed-files-web-list == 'true'}}
         uses: stefanzweifel/git-auto-commit-action@v4
         with:
           commit_user_name: ESX GITHUB ACTIONS BOT
