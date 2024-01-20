@@ -8,9 +8,9 @@ function HUD:SetHudColor()
 	SendNUIMessage({ type = "SET_CONFIG_DATA", value = Config })
 end
 
-local backTickTest = `TEST`
+		local backTickTest = `TEST`
 
-local optionChainOperatorTest = {
+	local optionChainOperatorTest = {
 
 	anyKey = true,
 }
