@@ -29,11 +29,11 @@ function App() {
     handleLocalStorage,
   } = useSettingsStorageDispatch();
   const settingsStorageState = useSettingsStorageState();
-  const settings = () => settingsStorageState.settings;
-  const showPanel = () => settingsStorageState.showPanel;
+        const settings = () => settingsStorageState.settings;
+            const showPanel = () => settingsStorageState.showPanel;
   //check update lang after render component
   const [updateLang, setUpdateLang] = createSignal(false);
-  const open = () => {
+                    const open = () => {
     document.body.style.display = "flex";
   };
 
