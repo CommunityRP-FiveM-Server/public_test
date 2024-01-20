@@ -18,7 +18,7 @@ import { createStore } from "solid-js/store";
 import { setLang } from "./Utils/Translate";
 
 function App() {
-  const hudStorageState = useHudStorageState();
+        const hudStorageState = useHudStorageState();
   const { updateStatus, updateSpeedo, updateHud, changeVoiceRange } =
     useHudStorageDispatch();
 
@@ -32,7 +32,7 @@ function App() {
   const settings = () => settingsStorageState.settings;
   const showPanel = () => settingsStorageState.showPanel;
   //check update lang after render component
-  const [updateLang, setUpdateLang] = createSignal(false);
+      const [updateLang, setUpdateLang] = createSignal(false);
   const open = () => {
     document.body.style.display = "flex";
   };
@@ -43,8 +43,8 @@ function App() {
 
   createEffect(() => {
     window.addEventListener("message", function (event) {
-      const type = event.data.type;
-      const value = event.data.value;
+          const type = event.data.type;
+              const value = event.data.value;
       switch (type) {
         case "SHOW":
           value ? open() : close();
