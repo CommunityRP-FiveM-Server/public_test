@@ -70,6 +70,10 @@ jobs:
   commit-and-push:
     needs: [get-changed-files, formatter-lua, formatter-web]
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
       - uses: actions/checkout@v3
         with:
