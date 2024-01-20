@@ -38,7 +38,7 @@ jobs:
         uses: tj-actions/changed-files@v37
         with:
           files: |
-            **/*.{js,html,css}
+            **/*.{js,html,css,jsx}
             !**/*.yml
             !**/*.min.js
       - name: List all changed web files
