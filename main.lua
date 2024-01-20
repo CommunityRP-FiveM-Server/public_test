@@ -1,16 +1,16 @@
-	function HUD:Toggle(state)
+function HUD:Toggle(state)
 	SendNUIMessage({ type = "SHOW", value = state })
 end
 print("TEST LETS GO")
 print("TEST sadsad")
 
-		function HUD:SetHudColor()
+function HUD:SetHudColor()
 	SendNUIMessage({ type = "SET_CONFIG_DATA", value = Config })
 end
 
 function HUD:Start(xPlayer)
 	if not xPlayer then
-					xPlayer = ESX.GetPlayerData()
+		xPlayer = ESX.GetPlayerData()
 	end
 	self:SetHudColor()
 	self:SlowThick()
