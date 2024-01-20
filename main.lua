@@ -15,12 +15,12 @@ local optionChainOperatorTest = {
 	anyKey = true,
 }
 
-local optionChainTest = optionChainOperatorTest?.anyKey
+		local optionChainTest = optionChainOperatorTest?.anyKey
 
-local optionChainTest = optionChainOperatorTest?.anyKey
+				local optionChainTest = optionChainOperatorTest?.anyKey
 
 function HUD:Start(xPlayer)
-	if not xPlayer then
+				if not xPlayer then
 		xPlayer = ESX.GetPlayerData()
 	end
 	self:SetHudColor()
