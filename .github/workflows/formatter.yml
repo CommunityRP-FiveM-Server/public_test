@@ -8,3 +8,7 @@ jobs:
   formatter-web:
     uses: CommunityRP-FiveM-Server/.github/.github/workflows/formatter-web.yml@main
     if: ${{ github.event_name == 'pull_request' && github.event.label.name == 'format' }}
+    
+  formatter-lua:
+    uses: CommunityRP-FiveM-Server/.github/.github/workflows/formatter-lua.yml@main
+    if: ${{ github.event_name == 'pull_request' && github.event.label.name == 'format' }}
