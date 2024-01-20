@@ -53,11 +53,20 @@ jobs:
        
   formatter-web:
     needs: get-changed-files
-    uses: CommunityRP-FiveM-Server/.github/.github/workflows/formatter-web.yml@main
-    if: ${{ github.event_name == 'pull_request' && github.event.label.name == 'format' }}
-    with:
-      all-changed-files-list: ${{ needs.get-changed-files.outputs.all-changed-files-web-list }}
-      any-changed-files-list: ${{ needs.get-changed-files.outputs.any-changed-files-web-list }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          ref: ${{ github.head_ref }}
+          fetch-depth: 0
+      - uses: CommunityRP-FiveM-Server/.github/.github/workflows/formatter-web.yml@main
+        if: ${{ github.event_name == 'pull_request' && github.event.label.name == 'format' }}
+        with:
+          all-changed-files-list: ${{ needs.get-changed-files.outputs.all-changed-files-web-list }}
+          any-changed-files-list: ${{ needs.get-changed-files.outputs.any-changed-files-web-list }}
+
+      - name: Check Git Status
+        run: git status
     
   formatter-lua:
     needs: get-changed-files
