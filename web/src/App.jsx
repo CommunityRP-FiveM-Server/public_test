@@ -18,7 +18,7 @@ import { createStore } from "solid-js/store";
 import { setLang } from "./Utils/Translate";
 
 function App() {
-  const hudStorageState = useHudStorageState();
+            const hudStorageState = useHudStorageState();
   const { updateStatus, updateSpeedo, updateHud, changeVoiceRange } =
     useHudStorageDispatch();
 
@@ -28,11 +28,11 @@ function App() {
     setDefaultConfigs,
     handleLocalStorage,
   } = useSettingsStorageDispatch();
-  const settingsStorageState = useSettingsStorageState();
+        const settingsStorageState = useSettingsStorageState();
   const settings = () => settingsStorageState.settings;
-  const showPanel = () => settingsStorageState.showPanel;
+            const showPanel = () => settingsStorageState.showPanel;
   //check update lang after render component
-  const [updateLang, setUpdateLang] = createSignal(false);
+        const [updateLang, setUpdateLang] = createSignal(false);
   const open = () => {
     document.body.style.display = "flex";
   };
