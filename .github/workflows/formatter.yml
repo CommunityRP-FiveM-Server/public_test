@@ -71,6 +71,10 @@ jobs:
     needs: [get-changed-files, formatter-lua, formatter-web]
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v3
+        with:
+          ref: ${{ github.head_ref }}
+          fetch-depth: 0
       - name: Get changed files extensions
         if: ${{ needs.get-changed-files.outputs.any-changed-files-lua-list == 'true' || needs.get-changed-files.outputs.any-changed-files-web-list == 'true'}}
         id: getext-all
