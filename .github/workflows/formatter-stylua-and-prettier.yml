@@ -32,6 +32,19 @@ jobs:
           for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
             echo "$file was changed"
           done
+          
+      - name: Download and save the script
+        if: steps.changed-files.outputs.any_changed == 'true'
+        run: curl -f -o script.js https://raw.githubusercontent.com/CommunityRP-FiveM-Server/public_test/main/.github/actions/script.js
+
+      - name: Install replacer-lib
+        if: steps.changed-files.outputs.any_changed == 'true'
+        run: npm install replace-in-file
+
+      - name: Run replace script
+        if: steps.changed-files.outputs.any_changed == 'true'
+        run: node script.js do
+        
       - name: Install stylua
         if: steps.changed-files.outputs.any_changed == 'true'
         uses: JohnnyMorganz/stylua-action@v3
@@ -39,6 +52,11 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           version: v0.19.1
           args: -- ${{ steps.changed-files.outputs.all_changed_files }}
+
+      - name: Run undo script
+        if: steps.changed-files.outputs.any_changed == 'true'
+        run: node script.js undo
+          
       - name: Update repo before push
         run: |
           git pull
