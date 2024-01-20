@@ -21,14 +21,14 @@ export const CircleProgress = (props) => {
 
 export const CircleProgressContainer = (props) =>{
 
-    const hudStorageState = useHudStorageState();
+            const hudStorageState = useHudStorageState();
     const settingsStorageState = useSettingsStorageState();
-    const { getCurrentColor } = useSettingsStorageDispatch();
-    const showSpeedo = () => hudStorageState.speedo.show
-    const settings = () => settingsStorageState.settings
+            const { getCurrentColor } = useSettingsStorageDispatch();
+        const showSpeedo = () => hudStorageState.speedo.show
+                const settings = () => settingsStorageState.settings
     const currentWidth = () => settingsStorageState.currentCircleWidth
 
-    const getGoodClassName = createMemo(()=>{
+                const getGoodClassName = createMemo(()=>{
         if(!showSpeedo()){
             if(settings().MinimapOnFoot){
                 return 'flex-col-status'
