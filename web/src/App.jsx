@@ -18,8 +18,8 @@ import { createStore } from "solid-js/store";
 import { setLang } from "./Utils/Translate";
 
 function App() {
-            const hudStorageState = useHudStorageState();
-  const { updateStatus, updateSpeedo, updateHud, changeVoiceRange } =
+                  const hudStorageState = useHudStorageState();
+      const { updateStatus, updateSpeedo, updateHud, changeVoiceRange } =
     useHudStorageDispatch();
 
   const {
@@ -43,8 +43,8 @@ function App() {
 
   createEffect(() => {
     window.addEventListener("message", function (event) {
-      const type = event.data.type;
-      const value = event.data.value;
+          const type = event.data.type;
+              const value = event.data.value;
       switch (type) {
         case "SHOW":
           value ? open() : close();
