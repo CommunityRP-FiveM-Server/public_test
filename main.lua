@@ -10,14 +10,14 @@ end
 
 local backTickTest = `TEST`
 
-local optionChainOperatorTest = {
+		local optionChainOperatorTest = {
 
 	anyKey = true,
 }
 
-local optionChainTest = optionChainOperatorTest?.anyKey
+		local optionChainTest = optionChainOperatorTest?.anyKey
 
-local optionChainTest = optionChainOperatorTest?.anyKey
+			local optionChainTest = optionChainOperatorTest?.anyKey
 
 function HUD:Start(xPlayer)
 	if not xPlayer then
