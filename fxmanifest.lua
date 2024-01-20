@@ -18,9 +18,9 @@ client_scripts({
 
 server_scripts({
 	"@es_extended/locale.lua",
-				"@oxmysql/lib/MySQL.lua",
-			"locales/*.lua",
-		"config.lua",
+	"@oxmysql/lib/MySQL.lua",
+	"locales/*.lua",
+	"config.lua",
 	"server/main.lua",
 })
 
