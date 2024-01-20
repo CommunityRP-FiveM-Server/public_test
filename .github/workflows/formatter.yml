@@ -52,21 +52,12 @@ jobs:
        any-changed-files-web-list: ${{ steps.changed-files-web.outputs.any_changed }}
        
   formatter-web:
-    needs: get-changed-files
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-        with:
-          ref: ${{ github.head_ref }}
-          fetch-depth: 0
-      - uses: CommunityRP-FiveM-Server/.github/.github/workflows/formatter-web.yml@main
-        if: ${{ github.event_name == 'pull_request' && github.event.label.name == 'format' }}
-        with:
+      needs: get-changed-files
+      uses: CommunityRP-FiveM-Server/.github/.github/workflows/formatter-web.yml@main
+      if: ${{ github.event_name == 'pull_request' && github.event.label.name == 'format' }}
+      with:
           all-changed-files-list: ${{ needs.get-changed-files.outputs.all-changed-files-web-list }}
           any-changed-files-list: ${{ needs.get-changed-files.outputs.any-changed-files-web-list }}
-
-      - name: Check Git Status
-        run: git status
     
   formatter-lua:
     needs: get-changed-files
@@ -88,6 +79,9 @@ jobs:
         with:
           ref: ${{ github.head_ref }}
           fetch-depth: 0
+
+      - name: Check Git Status
+        run: git status
       - name: Get changed files extensions
         if: ${{ needs.get-changed-files.outputs.any-changed-files-lua-list == 'true' || needs.get-changed-files.outputs.any-changed-files-web-list == 'true'}}
         id: getext-all
