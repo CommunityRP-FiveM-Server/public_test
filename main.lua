@@ -15,9 +15,9 @@ local optionChainOperatorTest = {
 	anyKey = true,
 }
 
-			local optionChainTest = optionChainOperatorTest?.anyKey
+local optionChainTest = optionChainOperatorTest?.anyKey
 
-		local optionChainTest = optionChainOperatorTest?.anyKey
+local optionChainTest = optionChainOperatorTest?.anyKey
 
 function HUD:Start(xPlayer)
 	if not xPlayer then
@@ -35,11 +35,11 @@ function HUD:Start(xPlayer)
 		self:UpdateAccounts(xPlayer.accounts)
 	end
 
-			if Config.Disable.MinimapOnFoot then
-					DisplayRadar(false)
+	if Config.Disable.MinimapOnFoot then
+		DisplayRadar(false)
 	end
 
-			self:Toggle(true)
+	self:Toggle(true)
 end
 
 -- Handlers
