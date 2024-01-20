@@ -1,13 +1,15 @@
 name: Code formatter with stylua and prettier
 
-on: issue_comment
+on:
+  pull_request:
+    types: [ labeled ]
 
 jobs:
   formatter:
     runs-on: ubuntu-latest
     permissions:
       contents: write
-    if: ${{ github.event.issue.pull_request }}
+    if: ${{ github.event_name == 'pull_request' && github.event.label.name == 'format' }}
     env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
@@ -30,13 +32,64 @@ jobs:
           for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
             echo "$file was changed"
           done
-      - name: Install stylua
+
+      - name: Get changed files web
+        id: changed-files-web
+        uses: tj-actions/changed-files@v37
+        with:
+          files: |
+            **/*.{js,html,css,jsx}
+            !**/*.yml
+            !**/*.min.js
+      - name: List all changed web files
+        run: |
+          for file in ${{ steps.changed-files-web.outputs.all_changed_files }}; do
+            echo "$file was changed"
+          done
+
+      - name: Get changed files extensions
+        if: steps.changed-files.outputs.any_changed == 'true' || steps.changed-files-web.outputs.any_changed == 'true'
+        id: getext-all
+        run: |
+          import os
+          web_files = '${{ steps.changed-files-web.outputs.all_changed_files }}'.split()
+          lua_files = '${{ steps.changed-files.outputs.all_changed_files }}'.split()
+          all_files = web_files + lua_files
+          extensions = set('*' + os.path.splitext(file)[1] for file in all_files)
+          with open(os.getenv('GITHUB_ENV'), 'a') as f:
+            f.write(f"CHANGED_EXTENSIONS={' '.join(extensions)}\n")
+        shell: python
+        
+      - name: Format changed files with Prettier
+        if: steps.changed-files-web.outputs.any_changed == 'true'
+        run: | 
+            npm install --save-dev prettier && npx prettier --write ${{ steps.changed-files-web.outputs.all_changed_files }}  
+
+            
+      - name: Download and save the script
+        if: steps.changed-files.outputs.any_changed == 'true'
+        run: curl -f -o script.js https://raw.githubusercontent.com/CommunityRP-FiveM-Server/public_test/main/.github/actions/script.js
+
+      - name: Install replacer-lib
+        if: steps.changed-files.outputs.any_changed == 'true'
+        run: npm install replace-in-file
+
+      - name: Run replace script
+        if: steps.changed-files.outputs.any_changed == 'true'
+        run: node script.js do
+        
+      - name: Install stylua and run formatter
         if: steps.changed-files.outputs.any_changed == 'true'
         uses: JohnnyMorganz/stylua-action@v3
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           version: v0.19.1
           args: -- ${{ steps.changed-files.outputs.all_changed_files }}
+
+      - name: Run undo script
+        if: steps.changed-files.outputs.any_changed == 'true'
+        run: node script.js undo
+          
       - name: Update repo before push
         run: |
           git pull
@@ -46,6 +99,6 @@ jobs:
         with:
           commit_user_name: ESX GITHUB ACTIONS BOT
           commit_user_email: esx-github-actions-bot@users.noreply.github.com
-          commit_message: :art:Code formatted in *.lua files
-          file_pattern: '*.lua'
+          commit_message: :art:Code formatted in ${{ env.CHANGED_EXTENSIONS }} files
+          file_pattern: ${{ env.CHANGED_EXTENSIONS }}
           status_options: '--untracked-files=no'
