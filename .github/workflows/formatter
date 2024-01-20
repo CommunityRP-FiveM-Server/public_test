@@ -1,0 +1,8 @@
+name: Formatter handle web and lua files
+
+on:
+  workflow_dispatch:
+  
+jobs:
+  formatter-web:
+    uses: CommunityRP-FiveM-Server/.github/.github/workflows/formatter-web.yml@main
