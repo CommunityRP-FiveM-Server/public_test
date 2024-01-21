@@ -1,0 +1,8 @@
+name: Sync labels
+
+on:
+  workflow_dispatch:
+  
+jobs:
+  sync-labels:
+    uses: CommunityRP-FiveM-Server/.github/.github/workflows/sync-labels.yml@main
