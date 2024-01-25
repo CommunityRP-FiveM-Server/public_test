@@ -10,6 +10,7 @@ on:
       zipName:
         description: 'Zip Name'
         required: true
+        default: ${{ github.repository || 'esx_core' }}
       web:
         description: 'Web'
         required: false
