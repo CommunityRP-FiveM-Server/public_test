@@ -10,7 +10,6 @@ on:
       zipName:
         description: 'Zip Name'
         required: true
-        default: 'esx_core'
       web:
         description: 'Web'
         required: false
