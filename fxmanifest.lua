@@ -2,10 +2,6 @@ fx_version("adamant")
 
 game("gta5")
 
-description("ESX Shops")
-lua54("yes")
-version("10.0.2")
-legacyversion("1.9.1")
 
 shared_script("@es_extended/imports.lua")
 
