@@ -50,9 +50,9 @@ replace /home/runner/work/public_test/public_test/.git/objects
 replace /home/runner/work/public_test/public_test/.git/objects/info
 /home/runner/work/public_test/public_test/.git/objects/pack
 replace /home/runner/work/public_test/public_test/.git/objects/pack
-/home/runner/work/public_test/public_test/.git/objects/pack/pack-aafd9ff201014336f788f0633e682bc8087710c0.idx
-/home/runner/work/public_test/public_test/.git/objects/pack/pack-aafd9ff201014336f788f0633e682bc8087710c0.pack
-/home/runner/work/public_test/public_test/.git/objects/pack/pack-aafd9ff201014336f788f0633e682bc8087710c0.rev
+/home/runner/work/public_test/public_test/.git/objects/pack/pack-4f4205dfe504f1312d551df9d418179de0ef3fc7.idx
+/home/runner/work/public_test/public_test/.git/objects/pack/pack-4f4205dfe504f1312d551df9d418179de0ef3fc7.pack
+/home/runner/work/public_test/public_test/.git/objects/pack/pack-4f4205dfe504f1312d551df9d418179de0ef3fc7.rev
 /home/runner/work/public_test/public_test/.git/refs
 replace /home/runner/work/public_test/public_test/.git/refs
 /home/runner/work/public_test/public_test/.git/refs/heads
@@ -90,6 +90,7 @@ replace /home/runner/work/public_test/public_test/.git/refs/tags
 /home/runner/work/public_test/public_test/.git/refs/tags/10.0.2
 /home/runner/work/public_test/public_test/.git/refs/tags/10.0.20
 /home/runner/work/public_test/public_test/.git/refs/tags/10.0.21
+/home/runner/work/public_test/public_test/.git/refs/tags/10.0.22
 /home/runner/work/public_test/public_test/.git/refs/tags/10.0.3
 /home/runner/work/public_test/public_test/.git/refs/tags/10.0.4
 /home/runner/work/public_test/public_test/.git/refs/tags/10.0.5
